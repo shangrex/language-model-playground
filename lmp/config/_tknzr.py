@@ -11,23 +11,22 @@ class TknzrCfg(BaseCfg):
         self.parser = argparse.ArgumentParser()
 
     def train_parser(self, parser: argparse.ArgumentParser) -> None:
-        
+        self.parser = parser
         # Required arguments.
-        group = self.parser.add_argument_group('common arguments')
-        group.add_argument(
+        self.parser.add_argument(
             '--dset_name',
             choices=lmp.dset.DSET_OPTS.keys(),
             help='Name of the dataset which is used to train tokenizer.',
             required=True,
             type=str,
         )
-        group.add_argument(
+        self.parser.add_argument(
             '--exp_name',
             help='Name of the tokenizer training experiment.',
             required=True,
             type=str,
         )
-        group.add_argument(
+        self.parser.add_argument(
             '--max_vocab',
             help=' '.join([
                 'Maximum vocabulary size.',
@@ -36,7 +35,7 @@ class TknzrCfg(BaseCfg):
             required=True,
             type=int,
         )
-        group.add_argument(
+        self.parser.add_argument(
             '--min_count',
             help=' '.join([
                 'Minimum token frequency for token to be included in',
@@ -45,7 +44,7 @@ class TknzrCfg(BaseCfg):
             required=True,
             type=int,
         )
-        group.add_argument(
+        self.parser.add_argument(
             '--ver',
             help='Version of the dataset which is used to train tokenizer.',
             required=True,
@@ -53,7 +52,7 @@ class TknzrCfg(BaseCfg):
         )
 
         # Optional arguments.
-        group.add_argument(
+        self.parser.add_argument(
             '--is_uncased',
             action='store_true',
             help='Convert all text and tokens into lowercase if set.',
