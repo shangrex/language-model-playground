@@ -24,7 +24,7 @@ jobs:
       
     - name: Check annotations
       run: |
-        mypy lmp test --ignore-missing-imports
+        pipenv run mypy lmp test --ignore-missing-imports
 
     - name: Lint code with flake8
       run: |
